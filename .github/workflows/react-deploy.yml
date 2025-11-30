@@ -24,7 +24,7 @@ jobs:
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           AWS_REGION: ap-south-1
         run: |
-          aws s3 sync ./dist s3://ai-clean-up ---recursive
+          aws s3 sync ./dist s3://ai-clean-up 
 
           
 
