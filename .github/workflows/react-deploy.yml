@@ -25,4 +25,4 @@ jobs:
           AWS_REGION: ap-south-1
         run: |
           npm install -g aws-cli
-          aws s3 sync ./dist s3://ai-clean-up --no-guess-mime-type --exact-timestamps
+          aws s3 sync ./dist s3://ai-clean-up  --exact-timestamps --recursive
