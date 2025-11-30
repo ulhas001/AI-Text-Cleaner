@@ -25,9 +25,12 @@ jobs:
           AWS_REGION: ap-south-1
         run: |
           npm install -g aws-cli
-          # Sync all files (will guess MIME types automatically)
           aws s3 sync ./dist s3://ai-clean-up --exact-timestamps
 
-          # Explicitly set Content-Type for HTML files to prevent wrong downloads
-          find ./dist -name "*.html" -exec aws s3 cp {} s3://ai-clean-up/{} --content-type text/html \;
+          find ./dist -name "*.html" -exec sh -c '
+            for filepath; do
+              filename="${filepath#./dist/}"
+              aws s3 cp "$filepath" "s3://ai-clean-up/$filename" --content-type text/html
+              done
+            ' sh {} +
 
